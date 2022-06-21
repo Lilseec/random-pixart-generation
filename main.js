@@ -49,9 +49,10 @@ function randomArt() {
             }
         }
     }
+    draw()
 }
 
-function animate() {
+function draw() {
     ctx.clearRect(-canvasWidth / 2, -canvasHeight / 2, canvas.width * 2, canvas.height * 2)
     
 
@@ -60,15 +61,17 @@ function animate() {
     for (let row = 0; row < playfield.length; row++) {
         for (let cell = 0; cell < playfield[row].length; cell++) {
             if (playfield[row][cell] === 1) {
+                ctx.fillStyle = `rgb(
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)},
+                    ${Math.floor(Math.random() * 256)})`;
                 ctx.fillRect(cell * blockSize, row * blockSize, blockSize, blockSize)
             }
         }
     }
 
-    requestAnimationFrame(animate)
 }
 
-requestAnimationFrame(animate)
 
 randomBtn.addEventListener("click", randomArt)
 
